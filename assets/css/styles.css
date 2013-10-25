@@ -1,0 +1,43 @@
+/*
+ * Sneyder Navia
+ * fabiansneyder@gmail.com
+ * Copyright 2013
+*/
+#main_wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+#main_wrap > .container {
+    padding: 60px 15px 0;
+}
+
+#main_footer {
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+#main_footer > .container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#main_footer > .container .credit {
+    margin: 20px 0;
+}
+
+#main_wrap .main_title{
+    padding: 0;
+    margin-top: 5px;
+}
+
+#main_wrap .main_title h1{
+    margin-top: 0;
+}
+
+#main_wrap .wrap_view .jumbotron{
+    padding: 15px 8px;
+}
