@@ -14,7 +14,7 @@ $(function(){
             this.events();
         },
         load: function(){
-            this.pp.progressBar = $('<div/>').appendTo('#main_panel').tbProgressbar({
+            this.pp.progressBar = $('<div/>').prependTo('#main_panel .lead').tbProgressbar({
                 value: 10,
                 complete: function(){
                     $('#modal_panel').hide();
@@ -26,6 +26,7 @@ $(function(){
         },
         events: function(){
             $(document).delegate('#main_menu a', 'click', this.behaviors.general.onSelectView);
+            keypress.combo('ctrl h', this.behaviors.general.onTogglePanel);
         },
         behaviors: {
             general: {
@@ -39,6 +40,9 @@ $(function(){
                     else{
                         $('#main_panel div.lead').load('views/' + link.data('for'));
                     }
+                },
+                onTogglePanel: function(event){
+                    event.preventDefault();
                 }
             }
         }

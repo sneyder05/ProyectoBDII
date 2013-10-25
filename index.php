@@ -13,42 +13,62 @@
         <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     </head>
     <body>
-        <div id="main_wrap">
-            <div class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="javascript:">I.T.C</a>
-                    </div>
-                    <div class="collapse navbar-collapse">
+        <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">DB Admin</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
                         <ul id="main_menu" class="nav navbar-nav">
                             <li class="active"><a href="javascript:" data-for="index">Inicio</a></li>
                             <li><a href="javascript:" data-for="acercade.html">Acerca de...</a></li>
                         </ul>
+                    </ul>
+                </div><!-- /.nav-collapse -->
+            </div><!-- /.container -->
+        </div><!-- /.navbar -->
+
+        <div id="main_panel" class="container">
+            <div class="page-header main_title">
+                <h1>Administraci&oacute;n Bases De Datos Oracle</h1>
+            </div>
+            <div class="row row-offcanvas row-offcanvas-right">
+                <div class="col-xs-12 col-sm-9">
+                    <div class="lead">
+                        Bienvenido...
                     </div>
                 </div>
-            </div>
-            <div id="main_panel" class="container">
-                <div class="page-header main_title">
-                    <h1>Administraci&oacute;n de bases de datos Oracle</h1>
+                <div id="admin_panel" class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+                    <div class="well sidebar-nav">
+                        <ul class="nav">
+                            <li class="title">Sidebar</li>
+                            <li class="active"><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="lead">
-                    
-                </div>
+                
             </div>
-        </div>
-        <div id="main_footer">
-            <div class="container">
-                <p class="credit">Sneyder Navia Urbano <span>&COPY;</span> 2013</p>
-            </div>
-        </div>
-        <div id="modal_panel" class="modal-backdrop fade in" tabindex="-1">
+            <hr>
+            <footer>
+                <p>Sneyder Navia Urbano <span>&COPY;</span> 2013</p>
+            </footer>
+            <div id="modal_panel" class="modal-backdrop fade in" tabindex="-1"></div>
         </div>
         <!-- INCLUDE JS FILES -->
+        <script src="assets/libraries/keypress-1.0.8.min.js"></script>
         <script src="assets/libraries/jquery.10.js"></script>
         <script src="assets/libraries/jquery.widget.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
