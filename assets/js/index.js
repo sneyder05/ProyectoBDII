@@ -14,6 +14,13 @@ $(function(){
             this.events();
         },
         load: function(){
+            $.jsonp({
+                url: 'http://localhost:37435/ProyectoServerBDII/resources/Services/Test',
+                success: function(data, status, opts){
+                    
+                }
+            });
+            
             this.pp.progressBar = $('<div/>').prependTo('#main_panel .lead').tbProgressbar({
                 value: 10,
                 complete: function(){

@@ -70,9 +70,11 @@
         <!-- INCLUDE JS FILES -->
         <script src="assets/libraries/keypress-1.0.8.min.js"></script>
         <script src="assets/libraries/jquery.10.js"></script>
+        <script src="assets/libraries/jquery.jsonp.js"></script>
         <script src="assets/libraries/jquery.widget.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/libraries/tbProgressBar.js"></script>
+        <script src="assets/js/setup.js"></script>
         <script src="assets/js/index.js"></script>
     </body>
 </html>
