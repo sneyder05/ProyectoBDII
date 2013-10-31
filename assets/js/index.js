@@ -7,24 +7,30 @@ var Index;
 $(function(){
     Index = {
         pp: {
-            progressBar: null
+            progressBar: null,
+            loginView: null
         },
         init: function(){
             this.load();
             this.events();
         },
         load: function(){
-            $.jsonp({
-                url: 'http://localhost:37435/ProyectoServerBDII/resources/Services/Test',
-                success: function(data, status, opts){
-                    
-                }
-            });
-            
             this.pp.progressBar = $('<div/>').prependTo('#main_panel .lead').tbProgressbar({
                 value: 10,
                 complete: function(){
                     $('#modal_panel').hide();
+                    if($.isEmpty(Global.USER_LOGGED)){
+                        $.get('views/login.html', function(html){
+                            Index.pp.loginView = $.xBModal({
+                                title: 'Iniciar Sesi&oacute;n',
+                                content: html,
+                                closeThick: false,
+                                closeOnEscape: false,
+                                width: '30%',
+                                me: Index
+                            });
+                        });
+                    }
                     Index.pp.progressBar.tbProgressbar('destroy');
                 }
             });
@@ -50,6 +56,10 @@ $(function(){
                 },
                 onTogglePanel: function(event){
                     event.preventDefault();
+                },
+                onLoginSuccessfull: function(){
+                    this.pp.loginView.remove();
+                    $('.modal-backdrop').remove();
                 }
             }
         }

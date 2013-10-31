@@ -149,6 +149,7 @@
 
 		// Build final url
 		url += data ? ( qMarkOrAmp( url ) + data ) : STR_EMPTY;
+                console.info('JSONP:' + url);
 
 		// Add callback parameter if provided as option
 		callbackParameter && ( url += qMarkOrAmp( url ) + encodeURIComponent( callbackParameter ) + "=?" );

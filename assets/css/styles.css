@@ -83,3 +83,11 @@ footer {
     padding-left: 15px;
     padding-right: 15px;
 }
+
+#wrap_login form>*:not(:first-child){
+    margin-top: 12px;
+}
+
+#wrap_login #btnLogin{
+    padding: 6px 12px;
+}

@@ -74,7 +74,11 @@
         <script src="assets/libraries/jquery.widget.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/libraries/tbProgressBar.js"></script>
+        <script src="assets/js/Global.js"></script>
         <script src="assets/js/setup.js"></script>
+        <script src="assets/libraries/xstrap/xBootstrapModal.js"></script>
+        <script src="assets/libraries/xstrap/xBootstrapAlert.js"></script>
+        <script src="assets/js/functions.js"></script>
         <script src="assets/js/index.js"></script>
     </body>
 </html>
