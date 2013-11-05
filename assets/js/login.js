@@ -40,6 +40,7 @@ $(function(){
                             })
                         },
                         success: function(data, status, opts){
+                            console.log(data);
                             $.checkResponse({
                                 response: data,
                                 onClose: function(){
@@ -48,8 +49,11 @@ $(function(){
                             });
                             
                             if(data.success){
-                                Index.behaviors.general.onLoginSuccessfull.call(Index);
+                                Index.behaviors.general.onLoginSuccessfull.call(Index, JSON.parse(data.data));
                             }
+                        },
+                        complete: function(){
+                            button.removeAttr('disabled').html('Autenticar');
                         }
                     });
 

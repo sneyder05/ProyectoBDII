@@ -57,7 +57,17 @@ $(function(){
                 onTogglePanel: function(event){
                     event.preventDefault();
                 },
-                onLoginSuccessfull: function(){
+                onLoginSuccessfull: function(data){
+                    $('#admin_panel ul.nav li:not(.title)').remove();
+                    
+                    if(data.tables){
+                        $.each(data.tables, function(table, content){
+                            $('<li>')
+                                .append('<a href="#">' + table + '</a>')
+                                .appendTo($('#admin_panel ul.nav'));
+                        });
+                    }
+                    
                     this.pp.loginView.remove();
                     $('.modal-backdrop').remove();
                 }
