@@ -65,18 +65,16 @@ body .main_title{
     margin-bottom: 3px;
 }
 
-#admin_panel ul.nav li:not(.title):not(.selected):hover{
+#admin_panel ul.nav li:not(.selected):hover{
     color: #3c7eb8;
 }
 
-#admin_panel ul.nav li.selected > a{
-    font-weight: bold;
-    color: black;
+#admin_panel ul.nav li.selected{
+    background: #cecece;
 }
 
 #admin_panel ul.nav li > a{
     padding: 5px;
-    border-bottom: 1px dashed #ebebeb;
 }
 
 footer {
@@ -90,4 +88,40 @@ footer {
 
 #wrap_login #btnLogin{
     padding: 6px 12px;
+}
+
+#main_panel .content .panel,
+#main_panel .content .table{
+    font-size: 11px;
+}
+#main_panel .content .table thead,
+#main_panel .content .panel-heading{
+    font-size: 12px;
+}
+
+#main_panel .content .panel-heading,
+#main_panel .content .table tbody tr td,
+#main_panel .content .table thead tr th{
+    padding: 4px 8px;
+}
+
+.mask_loading{
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mask_loading .loading{
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+    background: transparent url(../images/loader.gif) no-repeat scroll 0 0;
+}
+
+.mask_loading .text{
+    background: none repeat scroll 0 0 #DDDDDD;
+    border-radius: 10px 10px 10px 10px;
+    padding: 1px 5px;  
+    display: inline-block;
+    margin: 5px 0 0;
 }

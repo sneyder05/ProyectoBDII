@@ -40,22 +40,15 @@
             </div>
             <div class="row row-offcanvas row-offcanvas-right">
                 <div class="col-xs-12 col-sm-9">
-                    <div class="lead">
+                    <div class="content">
                         Bienvenido...
                     </div>
                 </div>
                 <div id="admin_panel" class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                     <div class="well sidebar-nav">
                         <ul class="nav">
-                            <li class="title">Sidebar</li>
-                            <li class="active"><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
+                            <li class="title">Tablas</li>
+                            <li><a href="#">Sin Registros</a></li>
                         </ul>
                     </div>
                 </div>
@@ -72,6 +65,7 @@
         <script src="assets/libraries/jquery.10.js"></script>
         <script src="assets/libraries/jquery.jsonp.js"></script>
         <script src="assets/libraries/jquery.widget.js"></script>
+        <script src="assets/libraries/jquery.effects.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/libraries/tbProgressBar.js"></script>
         <script src="assets/js/Global.js"></script>

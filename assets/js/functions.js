@@ -35,3 +35,36 @@ jQuery.checkResponse = function(opts){
         }
     }
 };
+
+jQuery.mask = {
+    set: function(opts){
+        var defaults = {
+            text: 'Obteniendo informaci&oacute;n...'
+        };
+        var options = $.extend({}, defaults, opts);
+        
+        var modal = $('#mask_panel_important');
+        
+        if(modal.length <= 0){
+            modal = $('<div></div>')
+                    .hide()
+                    .attr({
+                        id: 'mask_panel_important',
+                        tabIndex: -1
+                    })
+                    .addClass('modal-backdrop in')
+                    .appendTo(document.body);
+            
+            $('<div></div>')
+                    .attr({id: 'mask_panel_loader'})
+                    .addClass('mask_loading')
+                    .append('<div class="loading"></div>')
+                    .append('<span class="text">' + options.text + '</span>')
+                    .appendTo(document.body);
+        }
+        modal.show();
+    },
+    destroy: function(){
+        $('#mask_panel_important, #mask_panel_loader').remove();   
+    }
+};
