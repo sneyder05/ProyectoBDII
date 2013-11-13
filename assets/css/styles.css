@@ -90,6 +90,11 @@ footer {
     padding: 6px 12px;
 }
 
+#main_panel{
+    height: 100%;
+    overflow: auto;
+}
+
 #main_panel .content .panel,
 #main_panel .content .table{
     font-size: 11px;
@@ -105,10 +110,19 @@ footer {
     padding: 4px 8px;
 }
 
+#main_panel .content .table tbody tr td .glyphicon:not(:first-child){
+    margin-left: 3px;
+}
+#main_panel .content .table tbody tr td .glyphicon:last-child{
+    margin-right: 3px;
+}
+
 .mask_loading{
-    position: relative;
     margin: 0 auto;
+    position: absolute;
     text-align: center;
+    top: 45%;
+    width: 100%;
 }
 
 .mask_loading .loading{
@@ -124,4 +138,34 @@ footer {
     padding: 1px 5px;  
     display: inline-block;
     margin: 5px 0 0;
+}
+
+#float_toolbar_launch{
+    background: #E5E5E5;
+    width: 40px;
+    height: 40px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    position: absolute;
+    top: 125px;
+    left: 0;
+    border-top: 1px solid #888A8C;
+    border-right: 1px solid #888A8C;
+    border-bottom: 1px solid #888A8C;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#float_toolbar_launch .glyphicon{
+    margin: 3px 0 0 7px;
+}
+
+#float_toolbar{
+    left: 39px;
+    position: absolute;
+    top: 123px;
+}
+
+.panel_db{
+    display: none;
 }

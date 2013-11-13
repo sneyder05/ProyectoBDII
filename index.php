@@ -12,7 +12,17 @@
         <link href="assets/css/styles.css" rel="stylesheet" media="screen">
         <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     </head>
-    <body>
+    <body>        
+        <div data-toggle="tooltip" data-placement="right" data-original-title="Herramientas" id="float_toolbar_launch">
+            <span class="glyphicon glyphicon-new-window"></span>
+        </div>
+        <div id="float_toolbar" class="lol">
+            <ul class="dropdown-menu" role="menu">
+                <li role="presentation" class="dropdown-header">Herramientas</li>
+                <li role="presentation" data-toggle="tooltip" data-placement="right" data-original-title="Genear un backup de toda la base de datos"><a id="aBackup" role="menuitem" tabindex="-1" href="#">Generar Backup</a></li>
+                <li role="presentation" data-toggle="tooltip" data-placement="right" data-original-title="Ver el script SQL de creacion de la tabla"><a id="aGetSQLTable" role="menuitem" tabindex="-1" href="#">Ver SQL</a></li>
+            </ul>
+        </div>
         <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -41,7 +51,9 @@
             <div class="row row-offcanvas row-offcanvas-right">
                 <div class="col-xs-12 col-sm-9">
                     <div class="content">
-                        Bienvenido...
+                        <div id="columns_table_panel" class="panel panel-primary panel_db"></div>
+                        <div id="constraints_table_panel" class="panel panel-primary panel_db"></div>
+                        <div id="sql_table_panel" class="panel-group" id="accordion panel_db"></div>
                     </div>
                 </div>
                 <div id="admin_panel" class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
@@ -52,7 +64,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
             </div>
             <hr>
             <footer>
