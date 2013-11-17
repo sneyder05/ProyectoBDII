@@ -3,10 +3,6 @@
  * fabiansneyder@gmail.com
  * Copyright 2013
 */
-body{
-    padding-top: 70px;
-}
-
 body .main_title{
     padding: 0;
     margin-top: 5px;
@@ -14,39 +10,6 @@ body .main_title{
 
 .main_title h1{
     margin-top: 0;
-}
-
-@media screen and (max-width: 768px) {
-    .row-offcanvas {
-        position: relative;
-        -webkit-transition: all 0.25s ease-out;
-        -moz-transition: all 0.25s ease-out;
-        transition: all 0.25s ease-out;
-    }
-
-    .row-offcanvas-right
-    .sidebar-offcanvas {
-        right: -50%; /* 6 columns */
-    }
-
-    .row-offcanvas-left
-    .sidebar-offcanvas {
-        left: -50%; /* 6 columns */
-    }
-
-    .row-offcanvas-right.active {
-        right: 50%; /* 6 columns */
-    }
-
-    .row-offcanvas-left.active {
-        left: 50%; /* 6 columns */
-    }
-
-    .sidebar-offcanvas {
-        position: absolute;
-        top: 0;
-        width: 50%; /* 6 columns */
-    }
 }
 
 #admin_panel{
@@ -65,23 +28,6 @@ body .main_title{
     margin-bottom: 3px;
 }
 
-#admin_panel ul.nav li:not(.selected):hover{
-    color: #3c7eb8;
-}
-
-#admin_panel ul.nav li.selected{
-    background: #cecece;
-}
-
-#admin_panel ul.nav li > a{
-    padding: 5px;
-}
-
-footer {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
 #wrap_login form>*:not(:first-child){
     margin-top: 12px;
 }
@@ -90,9 +36,31 @@ footer {
     padding: 6px 12px;
 }
 
-#main_panel{
+#main_wrap > .container {
+    padding: 60px 15px 0;
+}
+
+#main_wrap {
+    min-height: 100%;
+    height: auto !important;
     height: 100%;
-    overflow: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+#main_footer {
+    margin-top: 10px;
+    height: 50px;
+    background-color: #f5f5f5;
+}
+
+#main_footer > .container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#main_footer > .container .credit {
+    margin: 20px 0;
 }
 
 #main_panel .content .panel,
@@ -168,4 +136,17 @@ footer {
 
 .panel_db{
     display: none;
+}
+
+.panel-heading .glyphicon_tools{
+    float: right;
+    cursor: pointer;
+}
+
+table th.adjust_width{
+    width: 1px;
+}
+
+table .tools_for_field > span{
+    cursor: pointer;
 }

@@ -43,11 +43,13 @@ $(function(){
         events: function(){
             $(document).delegate('html', 'click', this.behaviors.general.onClickHtml);
             $(document).delegate('#float_toolbar', 'click', this.behaviors.general.stopEventToolbar);
-            $(document).delegate('#main_menu a', 'click', this.behaviors.general.onSelectView);
-            $(document).delegate('#admin_panel ul.nav li a', 'click', this.behaviors.general.onSelectTable);
+            $(document).delegate('#main_menu a:not(.dropdown-toggle)', 'click', this.behaviors.general.onSelectView);
+            $(document).delegate('#navbar_tables li a', 'click', this.behaviors.general.onSelectTable);
             $(document).delegate('#float_toolbar_launch', 'click', this.behaviors.general.onLaunchToolbar);
             $(document).delegate('#float_toolbar #aGetSQLTable', 'click', this.behaviors.general.onGetTableSQL);
             $(document).delegate('#float_toolbar #aBackup', 'click', this.behaviors.general.onGenerateBck);
+            $(document).delegate('.tools_for_field .delete_field', 'click', this.behaviors.general.onDeleteField);
+            $(document).delegate('.tools_for_field span', 'mouseenter mouseleave', this.behaviors.general.onHoverToolField);
             
             keypress.combo('ctrl h', this.behaviors.general.onTogglePanel);
         },
@@ -61,6 +63,64 @@ $(function(){
                 },
                 stopEventToolbar: function(event){
                     event.stopPropagation();
+                },
+                onHoverToolField: function(event){
+                    $(this).parent().parent().css({background: event.type === 'mouseenter' ? '#eee' : '#fff'});
+                },
+                onDeleteField: function(){
+                    var button = $(this);
+                    var field = button.data('field');
+                    
+                    if(!$.isEmpty(field)){
+                        $.xBConfirm({
+                            labelYes: 'Continuar',
+                            labelNo: 'Cancelar',
+                            title: 'Confirmaci&oacute;n',
+                            content: 'Realmente desea eliminar el campo <strong>"' + field + '"</strong>',
+                            width: '340px',
+                            onYes: function(){
+                                $.jsonp({
+                                    url: Global.PATH_SERVER + '/Services/DeleteField',
+                                    beforeSend: function(){
+                                        $.mask.set({text: 'Eliminando el campo ' + field + '...'});
+                                    },
+                                    data: {
+                                        data: JSON.stringify({
+                                            Field: field,
+                                            Table: Index.pp.table
+                                        })
+                                    },
+                                    success: function(data, status, opts){
+                                        $.checkResponse({
+                                            response: data,
+                                            onClose: function(){
+                                                $.mask.destroy();
+                                            }
+                                        });
+
+                                        if(data.success){
+                                            $('#main_panel #sql_table_panel').html('').slideUp();
+                                            $('#float_toolbar #aGetSQLTable').parent().removeClass('disabled');
+                                            
+                                            button.parentsUntil('tr').last().parent()
+                                                .css({textDecoration: 'line-through'})
+                                                .animate({
+                                                    color: 'red',
+                                                    opacity: 0
+                                                }, 300, function(){
+                                                    $(this).remove();
+                                                });
+
+                                            $.mask.destroy();
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    else{
+                        alert('No se identifica el campo, imposible proceder con la eliminacion.');
+                    }
                 },
                 onGetTableSQL: function(){
                     var link = $(this);
@@ -85,6 +145,7 @@ $(function(){
                             $.checkResponse({
                                 response: data,
                                 onClose: function(){
+                                    link.parent().removeClass('disabled');
                                     $.mask.destroy();
                                 }
                             });
@@ -116,6 +177,41 @@ $(function(){
                     Index.behaviors.general.onClickHtml();
                 },
                 onGenerateBck: function(){
+                    var link = $(this);
+                    
+                    if(link.parent().hasClass('disabled')){
+                        return;
+                    }
+                    
+                    $.jsonp({
+                        url: Global.PATH_SERVER + '/Services/GenerateBackup',
+                        beforeSend: function(){
+                            $.mask.set({text: 'Generando backup...'});
+                        },
+                        data: {
+                            data: JSON.stringify({
+                                FileName: 'backup_oracle.sql'
+                            })
+                        },
+                        success: function(data, status, opts){
+                            $.checkResponse({
+                                response: data,
+                                onClose: function(){
+                                    link.parent().removeClass('disabled');
+                                    $.mask.destroy();
+                                }
+                            });
+                                                        
+                            if(data.success){
+                                var url = data.data;
+                                console.log(url);
+                                window.parent.location = url;
+                                
+                                $.mask.destroy();
+                            }
+                        }
+                    });
+                    
                     Index.behaviors.general.onClickHtml();
                 },
                 onLaunchToolbar: function(event){
@@ -128,10 +224,20 @@ $(function(){
                     link.parent().addClass('active').siblings().removeClass('active');
                     
                     if(link.data('for') === 'index'){
-                        $('#main_panel div.content').html('');
+                        $('.content .panel').hide();
+                        $('#main_panel .main_title').show();
                     }
-                    else{
-                        $('#main_panel div.content').load('views/' + link.data('for'));
+                    else if(link.data('for') === 'acercade.html'){
+                        $.get('views/' + link.data('for'), function(html){
+                            Index.pp.loginView = $.xBModal({
+                                title: 'Proyecto Final BD II',
+                                content: html,
+                                closeThick: true,
+                                closeOnEscape: false,
+                                width: '30%',
+                                me: Index
+                            });
+                        });
                     }
                 },
                 onTogglePanel: function(event){
@@ -149,13 +255,14 @@ $(function(){
                     event.preventDefault();
                 },
                 onLoginSuccessfull: function(data){
-                    $('#admin_panel ul.nav li:not(.title)').remove();
+                    $(document.body).removeClass('modal-open');
+                    $('#navbar_tables li:not(.divider)').remove();
                     
                     if(data.tables){
                         $.each(data.tables, function(table, content){
                             $('<li>')
                                 .append('<a href="#" data-table="' + table + '">' + table + '</a>')
-                                .appendTo($('#admin_panel ul.nav'));
+                                .appendTo($('#navbar_tables'));
                         });
                     }
                     
@@ -200,14 +307,16 @@ $(function(){
                                     var htmlCols = '';
                                     $.each(info.columns, function(column, data){
                                         var has_cst = data.has_constraint;
-                                        //<a href="#" data-toggle="tooltip" title="" data-original-title="Default tooltip">you probably</a>
                                         htmlCols += '<tr>' +
-                                                    '<td>' + (has_cst.isP ? '<span data-toggle="tooltip" data-original-title="Llave primaria" class="glyphicon glyphicon-star"></span>' : '') + (has_cst.isR ? '<span data-toggle="tooltip" data-original-title="Llave for&aacute;nea" class="glyphicon glyphicon-star-empty"></span>' : '') + (has_cst.isU ? '<span data-toggle="tooltip" data-original-title="&Uacute;nico" class="glyphicon glyphicon-record"></span>' : '') + (has_cst.isC ? '<span data-toggle="tooltip" data-original-title="Condicional" class="glyphicon glyphicon .glyphicon-tag"></span>' : '') +
+                                                    '<td>' + (has_cst.isP ? '<span data-toggle="tooltip" data-original-title="Llave primaria" class="glyphicon glyphicon-star"></span>' : '') + (has_cst.isR ? '<span data-toggle="tooltip" data-original-title="Llave for&aacute;nea" class="glyphicon glyphicon-star-empty"></span>' : '') + (has_cst.isU ? '<span data-toggle="tooltip" data-original-title="&Uacute;nico" class="glyphicon glyphicon-record"></span>' : '') + (has_cst.isC ? '<span data-toggle="tooltip" data-original-title="Condicional" class="glyphicon glyphicon glyphicon-tag"></span>' : '') +
                                                      column + '</td>' +
                                                     '<td>' + data.type + '</td>' +
                                                     '<td>' + data.length + '</td>' +
                                                     '<td>' + (data.precision > 0 ? data.precision + ((data.scale > 0 ? ',' + data.scale : '')) : '-') + '</td>' +
                                                     '<td>' + (data.nullable ? 'Si' : 'No') + '</td>' +
+                                                    '<td class="adjust_width tools_for_field">' +
+                                                        '<span data-toggle="tooltip" data-original-title="Eliminar campo ' + column + '" class="delete_field glyphicon glyphicon-trash" data-field="' + column + '"></span>' +
+                                                    '</td>' +
                                                 '</tr>';
                                     });
                                     
@@ -228,7 +337,10 @@ $(function(){
                                     htmlConstraints = $.isEmpty(htmlConstraints) ? '<tr><td colspan="5">No hay relaciones</td></tr>' : htmlConstraints;
                                     
                                     var html = '' +
-                                            '<div class="panel-heading"><strong>' + table_name + ': Definici&oacute;n</strong></div>' +
+                                            '<div class="panel-heading">' +
+                                                '<strong>' + table_name + ': Definici&oacute;n</strong>' +
+                                                (Object.keys(info.triggers).length > 0 ? '<span data-toggle="tooltip" data-original-title="Triggers: ' + (Object.keys(info.triggers).join(', ')) + '" class="glyphicon_tools glyphicon glyphicon-flash">(' + Object.keys(info.triggers).length + ')</span>' : '') +
+                                            '</div>' +
                                             '<table class="table">' +
                                                 '<thead>' +
                                                     '<tr>' +
@@ -237,6 +349,7 @@ $(function(){
                                                         '<th>Tama&ntilde;o</th>' +
                                                         '<th>Precisi&oacute;n</th>' +
                                                         '<th>Nulo</th>' +
+                                                        '<th class="adjust_width">Opciones</th>' +
                                                     '</tr>' +
                                                 '</thead>' +
                                                 '<tbody>' +

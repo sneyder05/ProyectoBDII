@@ -5,5 +5,5 @@
  */
 Global = {
     USER_LOGGED: null,
-    PATH_SERVER: 'http://localhost:43190/ProyectoServerDBII/resources'
+    PATH_SERVER: 'http://127.0.0.1:1349/ProyectoServerDBII/resources'
 };

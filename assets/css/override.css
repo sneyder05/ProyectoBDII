@@ -1,0 +1,11 @@
+
+
+.panel-success{
+    border-color: #339f77;
+}
+
+.panel-success>.panel-heading {
+    color: #fff;
+    background-color: #339f77;
+    border-color: #339f77;
+}

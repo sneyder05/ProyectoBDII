@@ -1,7 +1,7 @@
-/*
- * SNavia
- * Playtech - Enigma Dev
- * 2013
+/* 
+ * Sneyder Navia
+ * fabiansneyder@gmail.com
+ * Copyright 2013
  */
 
 /*
@@ -63,17 +63,18 @@
                         fn: function(){},
                         label: name,
                         closer: false,
-                        type: 'btn-primary'
+                        type: 'btn-primary',
+                        styles: {}
                     }, pp);
                     var button = $('<button></button>')
                         .text(opts.label)
                         .addClass('btn' + (opts.type !== null && opts.type !== '' ? ' ' + opts.type : ''))
+                        .css(opts.styles)
                         .attr({
                             'id': 'btn_' + name,
                             type: 'button'
                         })
                         .on('click', function(event) {
-                            console.log(arguments);
                             if(opts.closer)
                                 $(xBModalHeaderCloseThick).trigger('click');
                             opts.fn.call(options.me, this, event);

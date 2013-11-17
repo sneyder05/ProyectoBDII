@@ -1,8 +1,9 @@
-/*
- * SNavia
- * Playtech - Enigma Dev
- * 2013
+/* 
+ * Sneyder Navia
+ * fabiansneyder@gmail.com
+ * Copyright 2013
  */
+
 /*
  * Depends:
  * - xBootstrapModal

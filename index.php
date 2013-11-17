@@ -11,8 +11,9 @@
         <title>Proyecto Base De Datos II</title>
         <link href="assets/css/styles.css" rel="stylesheet" media="screen">
         <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="assets/css/override.css" rel="stylesheet" media="screen">
     </head>
-    <body>        
+    <body>
         <div data-toggle="tooltip" data-placement="right" data-original-title="Herramientas" id="float_toolbar_launch">
             <span class="glyphicon glyphicon-new-window"></span>
         </div>
@@ -23,54 +24,49 @@
                 <li role="presentation" data-toggle="tooltip" data-placement="right" data-original-title="Ver el script SQL de creacion de la tabla"><a id="aGetSQLTable" role="menuitem" tabindex="-1" href="#">Ver SQL</a></li>
             </ul>
         </div>
-        <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">DB Admin</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
+        <div id="main_wrap">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="javascript:">DB Admin</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
                         <ul id="main_menu" class="nav navbar-nav">
-                            <li class="active"><a href="javascript:" data-for="index">Inicio</a></li>
+                            <li><a href="javascript:" data-for="index">Inicio</a></li>
+                            <li class="dropdown active">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    Tablas
+                                    <span class="caret"></span>
+                                </a>
+                                <ul id="navbar_tables" class="dropdown-menu" role="menu"></ul>
+                            </li>
                             <li><a href="javascript:" data-for="acercade.html">Acerca de...</a></li>
                         </ul>
-                    </ul>
-                </div><!-- /.nav-collapse -->
-            </div><!-- /.container -->
-        </div><!-- /.navbar -->
-
-        <div id="main_panel" class="container">
-            <div class="page-header main_title">
-                <h1>Administraci&oacute;n Bases De Datos Oracle</h1>
-            </div>
-            <div class="row row-offcanvas row-offcanvas-right">
-                <div class="col-xs-12 col-sm-9">
-                    <div class="content">
-                        <div id="columns_table_panel" class="panel panel-primary panel_db"></div>
-                        <div id="constraints_table_panel" class="panel panel-primary panel_db"></div>
-                        <div id="sql_table_panel" class="panel-group" id="accordion panel_db"></div>
                     </div>
                 </div>
-                <div id="admin_panel" class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-                    <div class="well sidebar-nav">
-                        <ul class="nav">
-                            <li class="title">Tablas</li>
-                            <li><a href="#">Sin Registros</a></li>
-                        </ul>
-                    </div>
-                </div>
-
             </div>
-            <hr>
-            <footer>
-                <p>Sneyder Navia Urbano <span>&COPY;</span> 2013</p>
-            </footer>
-            <div id="modal_panel" class="modal-backdrop fade in" tabindex="-1"></div>
+            <div id="main_panel" class="container">
+                <div class="page-header main_title">
+                    <h2>Administraci&oacute;n De Bases De Datos Oracle</h2>
+                </div>
+                <div class="content">
+                    <div id="columns_table_panel" class="panel panel-primary panel_db"></div>
+                    <div id="constraints_table_panel" class="panel panel-primary panel_db"></div>
+                    <div id="sql_table_panel" class="panel-group" id="panel_db"></div>
+                </div>
+            </div>
+        </div>
+        <div id="main_footer">
+            <div class="container">
+                <p class="credit">Sneyder Navia Urbano <span>&COPY;</span> 2013</p>
+            </div>
+        </div>
+        <div id="modal_panel" class="modal-backdrop fade in" tabindex="-1">
         </div>
         <!-- INCLUDE JS FILES -->
         <script src="assets/libraries/keypress-1.0.8.min.js"></script>
@@ -84,6 +80,7 @@
         <script src="assets/js/setup.js"></script>
         <script src="assets/libraries/xstrap/xBootstrapModal.js"></script>
         <script src="assets/libraries/xstrap/xBootstrapAlert.js"></script>
+        <script src="assets/libraries/xstrap/xBootstrapConfirm.js"></script>
         <script src="assets/js/functions.js"></script>
         <script src="assets/js/index.js"></script>
     </body>
